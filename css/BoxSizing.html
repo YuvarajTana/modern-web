@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Understanding Box Sizing property  </title>
+
+  <style>
+
+    * {
+      margin: 0;
+      color: #fff;
+    }
+
+    .box{
+      width: 200px;
+      height: 100px;
+      border: 2px solid #ff9800;
+      padding: 20px;
+      background-color: blueviolet;
+    }
+
+    .content-box{
+      box-sizing: content-box;
+
+      /* 
+
+        Total width: 200 + (2 * 20px) + (2 * 2px) = 244px
+        Total height: 100px + (2 * 20px) + (2 * 2px) = 144px
+        Content box width: 200px
+        Content box height: 100px 
+
+     */
+
+    }
+
+    .border-box{
+      box-sizing: border-box;
+      
+      /* 
+
+        Total width: 200px 
+        Total height: 100px
+        Content box width: 200px - (2*20px) - (2*2px) = 156px
+        Content box height: 100px - (2*20px) - (2*2px) = 56px
+
+     */
+
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <div class="box content-box">Content Box</div>
+  <div class="box border-box">Border Box</div>
+</body>
+</html>
