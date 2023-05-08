@@ -28,7 +28,9 @@
 ### Layout
   
   **Flex**
-  
+    
+    - https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/
+
   ```CSS
 
   ```
