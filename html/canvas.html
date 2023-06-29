@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep dive into Canvas</title>
+</head>
+<body>
+
+  <canvas id="canvas" width="800" height="800"></canvas>
+
+  <script>
+
+    (function(){
+
+      const canvasElement = document.querySelector('#canvas');
+      const context = canvasElement.getContext('2d');
+      
+      context.fillStyle = '#009BA3';
+      context.fillRect(20,20,200,200);
+
+
+      
+      context.fillStyle = '#7D51EB';
+      context.fillRect(100,100,220,220);
+
+
+    })();
+
+  </script>
+  
+</body>
+</html>

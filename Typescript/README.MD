@@ -11,6 +11,7 @@
 
 ### Basic Types
 
+
 ```TypeScript
 
   // string, number and boolean 
