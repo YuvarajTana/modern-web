@@ -1,10 +1,11 @@
-1️⃣ HTML
+## HTML
   • Block, Inline, Inline-Block
   • Event handling on elements
   • Semantic Elements
   • Impact of display none, hidden, opacity
+  
 
-2️⃣ CSS
+## CSS
 
   • Box sizing
   • Box model
@@ -13,7 +14,7 @@
   • Selector specificity
   • Flex box
 
-3️⃣ JavaScript
+## JavaScript
 
   • Hoisting - Functions, Variables
   • Lexical scope
@@ -24,7 +25,7 @@
   • ‘this’ keyword
   • Prototypes
 
-4️⃣ Web Fundamentals
+## Web Fundamentals
 
   • Async, Defer scripts
   • DOM manipulation

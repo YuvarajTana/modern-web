@@ -12,5 +12,29 @@
   — dependency is reversed: high level components are free of low-level components.
 
 
-
 ### SSH protocol
+
+### Linux Commands
+
+### Design System
+  
+  **HLD(High Level Design)**
+
+  **LLD(Low Level Design)**
+
+
+### Algorithms and Data Structures
+
+### Design patterns and implementations
+
+### Performance and Security
+
+### Object oriented programming paradigm
+
+### Functional programming paradigm
+
+### Web Specific(Core Fundamentals, Deep Understanding, Design, Implementation, and Architecture)
+
+
+  
+

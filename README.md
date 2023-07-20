@@ -1,6 +1,6 @@
 # modern-web
 
-  - All modern concepts, features and standards to build scalable and reliable web applications
+  - All modern concepts, features and standards to build scalable and reliable enterprise level web applications
 
   - It also be having commonly uses code snippets from beginner to advanced level
 
@@ -10,35 +10,43 @@
 
   - Developers, who wants to refers Web concepts to complete the day to day work in efficient way.
   
-## HTML 
-  **Layout Elements**
-    - div, main, header, section, article, aside, footer, nav 
 
-  **Text Elements**
-    - p, span, strong
+### SOLID principles
+1. Single Responsibility Principle (SRP) 
+  — class should do only one task.
+2. Open Closed Principle (OCP) 
+  — class should be extended not modified.
+3. Liskov Substitution Principle (LSP) 
+  — child classes must be able to replace their super classes.
+4. Interface Segregation Principle (ISP) 
+  — interfaces should be small: classes should not implement unnecessary methods.
+5. Dependency Inversion Principle (DIP) 
+  — dependency is reversed: high level components are free of low-level components.
 
-  **Form Elements**
 
-  **Media Elements**
+### SSH protocol
 
-  **Anchor(Link) Element**
+### Linux Commands
 
-  **List Elements**
-
-  **Table Elements**
+### Design System
   
+  **HLD(High Level Design)**
 
-## CSS
-
-## JavaScript
-
-## React
-
-## Node.js
-
-JS 
-
-React
+  **LLD(Low Level Design)**
 
 
+### Algorithms and Data Structures
 
+### Design patterns and implementations
+
+### Performance and Security
+
+### Object oriented programming paradigm
+
+### Functional programming paradigm
+
+### Web Specific(Core Fundamentals, Deep Understanding, Design, Implementation, and Architecture)
+
+### Building apps with Vanilla JavaScript and able to create own JS framework from scratch
+
+### Prompt Engineering
