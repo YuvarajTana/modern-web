@@ -34,3 +34,26 @@
   • Storage - Cookies, Local, Session
   • HTTP - Methods, Status, Headers, Query Params
 
+
+
+  **Variables**
+  - Using var, let and const
+
+  Examples:
+    ```JavaScript
+      var name = "Yuvaraj Tana" 
+      // Varibales declared with var can be hoitsed and will have two scopes global and local 
+
+
+       // Varibales declared with var can be hoitsed and will have two scopes global and local 
+      let age = 20;
+      
+
+      const address = "Tirupati"; // The value and type of address can not be changed
+
+      const 
+
+    ```
+  **Hoisting**
+  - Hoisting is a concept or behavior in JavaScript where the declaration of a function, variable, or class goes to the top of the scope they were defined in.
+
