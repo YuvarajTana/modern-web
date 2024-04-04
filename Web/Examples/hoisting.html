@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        /* ==== variable hoisting ==== */
+
+        console.log(' City ====> ', city); 
+        /* 
+            undefined ===> We don't get any errors like any other languages. 
+            Hoisting happened. The city declaration is hoisted to the top, 
+            so the interpreter "knows" that there is a variable called city
+        */
+        // console.log(city1); // ReferenceError: city1 is not defined
+
+
+        var city = "Banaglore";
+        console.log(' City ====> ', city); // Banaglore
+        /* Let's try to access undefined vaiable, we will get ReferenceError  */
+        
+        // console.log(city2); // ReferenceError: Cannot access 'city2' before initialization
+
+        let city2 = "Tirupati";
+        // console.log(company) // ReferenceError: Cannot access 'company' before initialization
+        const company = "Google";
+
+
+        /* ==== Function Hositing ==== */
+        sayHello() // This works and logs value 'Hello World'
+        function sayHello(){
+            console.log('Hello World');
+        }
+
+        /* ==== Class Hositing ==== */
+
+        class Car{
+            constructor(name){
+                this.name = name;
+            }
+        }
+
+    </script>
+</body>
+</html>
