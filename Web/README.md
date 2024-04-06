@@ -27,9 +27,9 @@
 
 ## Web Fundamentals
 
-  • Async, Defer scripts
+  • async, defer and normal scripts
   • DOM manipulation
-  • Security - CORS, CSRF
+  • Security - CORS, CSRF, XSS, X-Frame Options 
   • Events - Bubble, Capture, Target, Delegation
   • Storage - Cookies, Local, Session
   • HTTP - Methods, Status, Headers, Query Params

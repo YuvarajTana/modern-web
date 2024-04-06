@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="testid">Hello</p>
+    <div class="test">1</div>
+    <div class="test">2</div>
+    <script>
+        
+        /*
+            Initializating and invoking a function
+        */
+
+        // Normal function  
+        function sayHello(name){
+            console.log(`Hello ${name}`);
+        }
+        sayHello('Yuvaraj');
+
+
+        // Arrow function 
+        const sayHello1 = (name) => {
+            console.log(`Hello ${name}`);
+        };
+        sayHello1('Mahesh');
+
+
+
+        /*
+            Return values from a function
+        */
+        function printNanme(name){
+            return name
+        }
+
+        const printNanme1 = (name) => {
+            return name
+        }
+
+        const printNanme2 = (name) => name;
+
+
+        /*
+            arguments object
+        */
+
+        function add(a,b){
+            console.log(arguments);
+            return a + b;
+        }
+
+
+        const multiply = (...args) => {
+            console.log(args)
+            // return a * b;
+        };
+
+        add(1,2);
+
+        multiply(3,4);
+
+    </script>
+</body>
+</html>

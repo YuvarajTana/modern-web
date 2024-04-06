@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debounce and Throattle example</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+        
+        let counter = 0;
+        
+        function debounce(fn, delay){
+            
+            console.log(`Actual ${++counter} clicks `, delay);
+
+            let timer = null;
+            
+            return ( ...args ) => {
+                
+                if(timer) clearTimeout(timer);
+
+                timer = setTimeout(function(){
+                    
+                    fn.apply(this, args);
+
+                }, delay);
+                
+            }
+
+        }
+
+        const debouncedFunc = debounce(function(args){
+            console.log(`Reduced to ${counter} clicks`, args)
+        }, 1000);
+
+        document.addEventListener('click', debouncedFunc);
+
+    </script>
+</body>
+</html>
