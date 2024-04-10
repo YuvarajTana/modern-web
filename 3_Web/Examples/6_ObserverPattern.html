@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observer pattern</title>
+</head>
+<body>
+    <!-- Observer pattern -->
+
+    <script>
+
+        const Event = function(){
+            //... your code goes here
+            this.subscribers = []; 
+        }
+
+        Event.prototype.subscribe = function(fn){
+            this.subscribers.push(fn);
+        }
+
+        Event.prototype.unsubscribe = function(fn){
+            this.subscribers = this.subscribers.filter(fnc => fnc !== fn );
+        }
+
+        Event.prototype.fire = function(data) {
+            this.subscribers.forEach(fnc => {
+                fnc(data);
+            });
+        }
+
+        /* Test cases */
+        // // 1st observer
+        const eventHandler = function (item) {
+            console.log("fired: " + item);
+        };
+
+        // // 2nd observer
+        const eventHandler2 = function (item) {
+            console.log("Moved: " + item);
+        }; 
+
+        const event = new Event();
+
+        // // subscribe 1st observer
+        event.subscribe(eventHandler);
+        event.fire('event #1');
+
+        // // unsubscribe 1st observer
+        event.unsubscribe(eventHandler);
+        event.fire('event #2');
+        // Output: "fired: event #1"
+
+        // // subscribe 1st & 2nd observer
+        event.subscribe(eventHandler);
+        event.subscribe(eventHandler2);
+        event.fire('event #3');
+        // Output: "fired: event #3"
+        // Output: "moved: event #3"
+
+
+        // Using class 
+
+        class Observer {
+            constructor(){
+                this.subscribers = []
+            }
+            subscribe(fn){
+                this.subscribers.push(fn);
+            }
+            unsubscribe(fn){
+                this.subscribers = this.subscribers.filter(fnc => fnc !== fn );
+            }
+            fire(data){
+                this.subscribers.forEach(fnc => {
+                    fnc(data);
+                });
+            }
+        }
+        const observerInstance = new Observer();
+
+
+        // // subscribe 1st observer
+        observerInstance.subscribe(eventHandler);
+        observerInstance.fire('event #1');
+
+        // // unsubscribe 1st observer
+        observerInstance.unsubscribe(eventHandler);
+        observerInstance.fire('event #2');
+        // Output: "fired: event #1"
+
+        // // subscribe 1st & 2nd observer
+        observerInstance.subscribe(eventHandler);
+        observerInstance.subscribe(eventHandler2);
+        observerInstance.fire('event #3');
+        // Output: "fired: event #3"
+        // Output: "moved: event #3"
+
+    </script>
+</body>
+</html>
