@@ -7,7 +7,7 @@
   - Object.setPrototypeOf()
   - function constructor
   - class
-
+  
 
   ```JavaScript
 
