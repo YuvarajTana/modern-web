@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curry function Example</title>
+</head>
+<body>
+    <script>
+        function sum(a,b,c){
+            return a + b + c;
+        }
+
+        // Implementing curry function
+        function curry(func){
+            return function curried(...args){
+                console.log(args, func.length);
+                if(args.length >= func.length){
+                    return func.apply(this, args);
+                }else{
+                    return function(...args2){
+                        return curried.apply(this, args.concat(args2));
+                    }
+                }
+            }
+        }
+
+
+        const curriedFunc = curry(sum);
+
+        console.log(curriedFunc(1,2,3), curriedFunc(1,2)(3), curriedFunc(1)(2)(3));
+
+        // curriedFunc(1,2,3) // 6
+         // 6
+         // 6
+
+    </script>
+</body>
+</html>
