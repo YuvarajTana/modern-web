@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throatlling</title>
+</head>
+<body>
+    
+    <button id="btn">Click Me</button>
+
+    <script>
+
+        (function(){
+            let actualCicks = 0;
+            let limtedClicksTo = 0; 
+
+            const btnEl = document.querySelector('#btn');
+
+            function throatlling(func, delay){
+                actualCicks = actualCicks + 1;
+                let timeout = null;
+                return function(...args){
+                    if(!timeout){
+                        func.apply(args);
+                        timeout = setTimeout(()=>{
+                            timeout = null;
+                        },delay);
+                    }
+                }
+            }
+           
+            const handleOnClick = (e) => {
+                limtedClicksTo = limtedClicksTo + 1;
+                console.log('Clicked', e)
+
+                console.log(actualCicks, limtedClicksTo);
+            };
+
+            const throatlledFunc = throatlling(handleOnClick,1000);
+
+            btnEl.addEventListener('click', throatlledFunc);
+
+            
+            
+
+        })();
+
+    </script>
+</body>
+</html>

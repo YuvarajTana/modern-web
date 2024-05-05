@@ -21,8 +21,18 @@
         }
     }
 ```
+
+```Python
+
+```
 **Queue**
+
 **LinkedList**
+
 **Binary Search**
+
 **Binary Search Tree**
+
+**Graphs**
+
 

@@ -1,8 +1,16 @@
 ## Everything about modern CSS from basic usage to advanced 
 
+### How to apply styles 
+
+
 ### Fundamentals
+  
+  **CSS Units**
+  
+  **Selctors**
+
   **CSS Resets**
-  - https://www.joshwcomeau.com/css/custom-css-reset/
+    - https://www.joshwcomeau.com/css/custom-css-reset/
   
 ### Typography 
 
