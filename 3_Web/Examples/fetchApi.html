@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API </title>
+</head>
+<body>
+    <script>
+        async function logMovies() {
+            const response = await fetch("http://example.com/movies.json");
+            const movies = await response.json();
+            console.log(movies);
+        }
+
+
+        
+    </script>
+</body>
+</html>

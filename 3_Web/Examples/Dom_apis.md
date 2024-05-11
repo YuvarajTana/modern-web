@@ -25,3 +25,28 @@
 
 ```
 <!-- Update  -->
+
+
+
+<!-- Server communication -->
+
+
+```JavaScript
+
+    async function logMovies() {
+        const response = await fetch("http://example.com/movies.json");
+        const movies = await response.json();
+        console.log(movies);
+    }
+
+
+    fetchMovies()
+
+
+    // fetch(url, { method: "POST", headers:{ conetent-type: ""} body:JSON.stringfy(data)})
+
+    // Uploading file ---> body will be formData 
+
+    // 
+
+```
