@@ -1,3 +1,25 @@
+## Building blocks of a web application
+- There are a few things we need to consider when building modern applications. Such as:
+
+  **User Interface**
+    - How users will consume and interact with your application.
+  **Routing** 
+    - How users navigate between different parts of your application.
+  **Data Fetching** 
+    - Where your data lives and how to get it.
+  **Rendering** 
+    - When and where you render static or dynamic content.
+  **Integrations** 
+    - What third-party services you use (for CMS, auth, payments, etc.) and how you connect to them.
+  **Infrastructure** 
+    - Where you deploy, store, and run your application code (serverless, CDN, edge, etc.).
+  **Performance** 
+    - how to optimize your application for end-users.
+  **Scalability** 
+    - how your application adapts as your team, data, and traffic grow.
+  **Developer Experience** 
+    - your team's experience building and maintaining your application.
+
 ## HTML
   • Block, Inline, Inline-Block
   • Event handling on elements
