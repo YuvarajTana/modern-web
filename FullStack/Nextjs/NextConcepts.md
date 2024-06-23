@@ -23,7 +23,9 @@
 #### Layouts
 - A layout is UI, that is shared between multiple routes 
 - On navigation, layouts preserve, state, remain interactive, and do not re-render 
-- **Root Layout** is mandetory file, defined top level of app directory and applies to all routes 
+- **Root Layout** is required file, defined top level of app directory and applies to all routes. It must contain html and body tags.
+- **Nested Layouts** The two layouts would be nested each other 
+![Nested Layouts](./images/nested-layouts-ui.avif)
 
 ### Templates 
 
