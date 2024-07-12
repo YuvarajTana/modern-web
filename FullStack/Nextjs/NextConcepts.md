@@ -17,19 +17,35 @@
 ![Page.js file ](./images/defining-routes.avif)
 
 
-#### Pages
+### Pages
 - A page is UI, that is unique to route, by default exporting a component from a page.js file 
 
-#### Layouts
+### Layouts
 - A layout is UI, that is shared between multiple routes 
 - On navigation, layouts preserve, state, remain interactive, and do not re-render 
 - **Root Layout** is required file, defined top level of app directory and applies to all routes. It must contain html and body tags.
 - **Nested Layouts** The two layouts would be nested each other 
 ![Nested Layouts](./images/nested-layouts-ui.avif)
 
+- Only the root layout can contain html and body tags.
+- When layout.js and page.js files are defined in the same folder, the layout will wrap the page
+
+### Metadata
+- In app directory, we can modify the head html elements such as title and meta using the Metadata APIs
+
+- Metadata can be defined by exporting a metadata object or generateMetadata function 
+
 ### Templates 
 
-## Rendering 
+## Linking and Navigation 
+**There are four ways to navigate between routes in Next.js 
+- Using the <Link> component
+- Using the useRouter hook (Client Components)
+- Using the redirect function (Server Components)
+- Using the Native History API 
+### Link Component 
+
+## Rendering
 
 ## Data Fetching 
 
