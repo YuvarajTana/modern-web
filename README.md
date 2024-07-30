@@ -19,3 +19,16 @@
 ## Data Source ( SQL and NoSQL )
 
 ## AI Engineering
+
+
+
+## Most commanly looking solutions 
+
+### Reading files and images and coverting them in base64URL
+  - https://pqina.nl/blog/convert-a-file-to-a-base64-string-with-javascript/
+
+  - https://pqina.nl/blog/convert-an-image-to-a-base64-string-with-javascript/#fetching-the-image-source
+
+### Cors and allowing and restricting domain names 
+
+  - https://hayageek.com/express-cors/
