@@ -54,3 +54,10 @@
 User -> Route 53 -> CloudFront -> ELB -> EC2 -> RDS
       -> S3 (for static content) 
       <- ELB <- CloudFront <- User
+
+
+
+
+### Reference links 
+
+https://docs.aws.amazon.com/whitepapers/latest/web-application-hosting-best-practices/an-aws-cloud-architecture-for-web-hosting.html
