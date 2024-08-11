@@ -35,6 +35,4 @@
 
 ### Web Specific(Core Fundamentals, Deep Understanding, Design, Implementation, and Architecture)
 
-
-  
-
+### Regular expressions 
