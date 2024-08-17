@@ -1,4 +1,19 @@
-## Everything abou Next.js
+
+Client-side rendering (CSR) is a method for rendering web content in which the web browser requests data from the server and then renders the page by executing JavaScript code in the browser. In other words, the web page is entirely created and rendered on the client side, meaning that the server only sends the raw data and client-side code manages the rendering and display of the page. 
+
+## Rendering strategies 
+
+    1. Client Side Rendering 
+
+    2. Server Side Rendering 
+
+    3. Static Site Generation 
+
+    4. Incremental Static Site Generation
+
+
+
+## Everything about Next.js
 
 ### What is Next.js
     - Next.js is React.js framework to build full stack web applications 
