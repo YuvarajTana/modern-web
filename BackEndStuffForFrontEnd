@@ -1,0 +1,103 @@
+Here’s an in-depth explanation of the 10 backend terms every frontend developer should know:
+
+1. Rate Limiting
+
+Rate limiting is a mechanism used to control the frequency of requests a client (user, app, or service) can make to a server within a specific time frame.
+	•	Why it’s needed: Prevents abuse (e.g., DDoS attacks) and ensures fair resource usage among clients.
+	•	How it works:
+	•	Requests are monitored per client (via IP, API key, or user token).
+	•	A limit (e.g., 100 requests per minute) is set, and exceeding this triggers actions like rejecting requests, delaying responses, or blocking users temporarily.
+	•	Example in action: An API may allow 10 login attempts per minute. Beyond that, further login attempts are blocked until the time resets.
+	•	Frontend Impact: If your frontend app makes multiple API calls, it must handle error codes (e.g., 429 Too Many Requests).
+
+2. Load Balancing
+
+Load balancing evenly distributes incoming network traffic across multiple servers to prevent overloading a single server.
+	•	Why it’s needed: Ensures high availability, reliability, and scalability.
+	•	How it works:
+	•	Traffic is routed using algorithms like Round Robin (requests distributed sequentially), Least Connections (sends to the server with the fewest active connections), or IP Hashing (based on client IP).
+	•	If one server fails, others handle the load seamlessly.
+	•	Example in action: A web app with heavy traffic uses 5 servers. The load balancer routes requests evenly across all 5.
+	•	Frontend Impact: If a server is down, the load balancer ensures continuity, so users don’t face downtime.
+
+3. Caching
+
+Caching temporarily stores frequently accessed data (e.g., API responses, images, or database queries) to reduce server load and improve response times.
+	•	Why it’s needed: Speeds up access to data, reduces server strain, and saves bandwidth.
+	•	How it works:
+	•	Data is cached in memory (RAM), a database, or a content delivery network (CDN).
+	•	The system checks the cache first; if data isn’t there, it fetches it from the source and stores it in the cache for future use.
+	•	Example in action: A weather app stores API responses for hourly weather data so users don’t trigger a new request for each view.
+	•	Frontend Impact: Cached data reduces latency, making the UI faster for users.
+
+4. CDN (Content Delivery Network)
+
+A CDN is a network of geographically distributed servers that deliver content (like images, CSS, JS, and videos) from the server closest to the user.
+	•	Why it’s needed: Reduces latency and ensures faster loading times.
+	•	How it works:
+	•	When a user requests content, it’s served from the nearest CDN server instead of the origin server.
+	•	CDNs also cache static assets and replicate them globally.
+	•	Example in action: When a user in India accesses a website hosted in the US, a CDN serves the content from a server in India for faster delivery.
+	•	Frontend Impact: Frontend developers need to configure assets to load from the CDN.
+
+5. Microservices
+
+Microservices is an architectural style where a large application is broken into smaller, independent services. Each service is responsible for a specific function and can operate independently.
+	•	Why it’s needed: Improves scalability, fault isolation, and development speed.
+	•	How it works:
+	•	Each microservice has its own database and communicates via APIs or messaging systems.
+	•	Services can be written in different programming languages and deployed independently.
+	•	Example in action: An e-commerce app has separate microservices for user authentication, product catalog, and payments.
+	•	Frontend Impact: Frontend apps interact with multiple APIs instead of one monolithic backend.
+
+6. API Gateway
+
+An API gateway is a server that acts as the single entry point for all client requests to a backend system. It handles routing, authentication, rate limiting, caching, and more.
+	•	Why it’s needed: Simplifies communication between clients and microservices.
+	•	How it works:
+	•	The gateway receives client requests and forwards them to the appropriate backend service.
+	•	It consolidates responses from multiple microservices and sends them to the client.
+	•	Example in action: A user request to an online store’s API Gateway may be routed to the product, cart, or payment microservices.
+	•	Frontend Impact: Frontend apps only need to call one gateway, even when interacting with multiple microservices.
+
+7. Webhook
+
+A webhook is a way for one application to send real-time data or notifications to another when a specific event occurs.
+	•	Why it’s needed: Reduces unnecessary polling by delivering data automatically.
+	•	How it works:
+	•	The receiver (e.g., your app) provides a URL (the webhook endpoint).
+	•	The sender (e.g., a payment gateway) sends updates (e.g., payment success) to the URL when events occur.
+	•	Example in action: A payment processor sends a webhook to notify your app when a transaction is successful.
+	•	Frontend Impact: Webhooks help keep the UI updated in real-time.
+
+8. Sharding
+
+Sharding is the process of splitting a large database into smaller, independent pieces (shards) to distribute the data and load.
+	•	Why it’s needed: Improves scalability and query performance for large datasets.
+	•	How it works:
+	•	Data is divided based on a key (e.g., user ID). Each shard contains only a subset of the data.
+	•	Queries are routed to the relevant shard.
+	•	Example in action: A social media app may store user data in separate shards based on geographic regions.
+	•	Frontend Impact: Frontend apps may need to handle cases where data comes from multiple shards.
+
+9. Proxy
+
+A proxy server is an intermediary between a client (e.g., browser) and a destination server (e.g., website).
+	•	Why it’s needed: Enhances security, caching, or content filtering.
+	•	How it works:
+	•	The client sends requests to the proxy.
+	•	The proxy forwards them to the destination and returns the response to the client.
+	•	Example in action: A corporate network uses a proxy to monitor and filter employee internet usage.
+	•	Frontend Impact: Proxies can cache content to improve app performance.
+
+10. Message Queue
+
+A message queue is a system that allows different parts of an application to communicate asynchronously by passing messages through a queue.
+	•	Why it’s needed: Decouples services and ensures reliable message delivery.
+	•	How it works:
+	•	A sender adds a message to the queue.
+	•	A receiver processes the message when ready.
+	•	Example in action: An e-commerce app uses a message queue to process order confirmations without slowing down the user experience.
+	•	Frontend Impact: Frontend apps can update the UI based on the status of messages processed by the queue.
+
+Understanding these terms helps frontend developers collaborate more effectively with backend teams and build better, more efficient applications.
