@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Moneyview Influencer Platform — Frontend Architecture Review</title>
+<style>
+  :root {
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --text: #172033;
+    --muted: #5f6b7a;
+    --brand: #173f73;
+    --brand-soft: #eaf1fb;
+    --border: #dfe5ec;
+    --success: #126a45;
+    --warning: #8a5a00;
+    --code: #111827;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.65;
+  }
+
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  header {
+    background: linear-gradient(135deg, #102c4d, #173f73);
+    color: #fff;
+    border-radius: 20px;
+    padding: 44px;
+    box-shadow: 0 18px 60px rgba(20, 45, 80, .18);
+    margin-bottom: 28px;
+  }
+
+  header h1 {
+    margin: 0 0 10px;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  header p {
+    max-width: 780px;
+    margin: 0;
+    color: rgba(255,255,255,.82);
+    font-size: 18px;
+  }
+
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .meta div {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.14);
+    padding: 14px 16px;
+    border-radius: 12px;
+  }
+
+  section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px;
+    margin: 18px 0;
+  }
+
+  h2 {
+    margin-top: 0;
+    color: var(--brand);
+    font-size: 26px;
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    margin-top: 28px;
+    margin-bottom: 8px;
+    font-size: 20px;
+  }
+
+  p { margin: 10px 0 16px; }
+
+  blockquote {
+    margin: 20px 0;
+    padding: 16px 20px;
+    border-left: 4px solid var(--brand);
+    background: var(--brand-soft);
+    border-radius: 8px;
+    font-weight: 600;
+  }
+
+  pre {
+    white-space: pre-wrap;
+    overflow-x: auto;
+    background: var(--code);
+    color: #e5e7eb;
+    padding: 18px;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+
+  code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 15px;
+  }
+
+  th, td {
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: #f0f4f8;
+  }
+
+  ul, ol {
+    padding-left: 24px;
+  }
+
+  li { margin: 6px 0; }
+
+  .callout {
+    padding: 16px 18px;
+    background: #f9fbfd;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--brand);
+    border-radius: 10px;
+  }
+
+  .flow {
+    overflow-x: auto;
+    padding: 12px 0;
+  }
+
+  .flow-row {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    min-width: 760px;
+  }
+
+  .node {
+    flex: 1;
+    background: #f7f9fc;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+    font-weight: 650;
+  }
+
+  .arrow {
+    align-self: center;
+    font-size: 22px;
+    color: var(--muted);
+  }
+
+  .checklist {
+    columns: 2 320px;
+    column-gap: 32px;
+  }
+
+  .checklist li {
+    break-inside: avoid;
+  }
+
+  .small {
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    margin-top: 36px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 700px) {
+    .page { padding: 18px 14px 48px; }
+    header { padding: 28px 22px; border-radius: 14px; }
+    section { padding: 22px 18px; }
+  }
+
+  @media print {
+    body { background: white; }
+    .page { max-width: none; padding: 0; }
+    header, section { box-shadow: none; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>Moneyview Influencer Platform</h1>
+    <p>Frontend Architecture Review & Productionization Recommendation</p>
+    <div class="meta">
+      <div><strong>Corporate Web</strong><br/>Next.js</div>
+      <div><strong>Influencer Portal</strong><br/>React + TypeScript + Vite</div>
+      <div><strong>Internal Portal</strong><br/>React + TypeScript + Vite</div>
+      <div><strong>Backend</strong><br/>Java + Spring Boot</div>
+    </div>
+  </header>
+
+  <section>
+    <h2>1. Executive Summary</h2>
+    <p>The AI-generated repository is valuable as a working prototype because it demonstrates the complete product flow: marketing acquisition, onboarding, KYC, agreements, content upload, marketing approval, referral attribution, disbursal tracking, ad-rights and payouts.</p>
+    <p>The prototype should not automatically become the production architecture. The priority is to convert it into clean production boundaries aligned with Moneyview's existing infrastructure.</p>
+    <blockquote>The prototype proves the product concept. Productionization should focus on application boundaries, security, state ownership, attribution, payment auditability and independent deployment.</blockquote>
+  </section>
+
+  <section>
+    <h2>2. Recommended Product Boundaries</h2>
+    <div class="flow">
+      <div class="flow-row">
+        <div class="node">Public Marketing Page<br/><span class="small">Moneyview Next.js</span></div>
+        <div class="arrow">→</div>
+        <div class="node">Influencer Portal<br/><span class="small">React + Vite</span></div>
+        <div class="arrow">→</div>
+        <div class="node">Internal Portal<br/><span class="small">React + Vite</span></div>
+        <div class="arrow">→</div>
+        <div class="node">Spring Boot APIs</div>
+      </div>
+    </div>
+    <h3>Public marketing page</h3>
+    <p>Move the public creator acquisition page into the existing Moneyview Next.js application. Reuse the prototype components and design where sensible, but integrate with the corporate design system, analytics, routing and deployment model.</p>
+    <h3>Influencer portal</h3>
+    <p>Keep it as an independent React + TypeScript + Vite SPA deployed through S3 + CloudFront. Treat it as mobile-first.</p>
+    <h3>Internal portal</h3>
+    <p>Keep it as an independent React + TypeScript + Vite SPA. Separate marketing and finance privileges through strict RBAC.</p>
+  </section>
+
+  <section>
+    <h2>3. Business Model</h2>
+    <table>
+      <thead><tr><th>Business Event</th><th>Example Reward</th></tr></thead>
+      <tbody>
+        <tr><td>Successful Personal Loan disbursal</td><td>₹500</td></tr>
+        <tr><td>Approved advertising rights</td><td>₹5,000</td></tr>
+      </tbody>
+    </table>
+    <p>These values must be configurable campaign rules. They should never be hard-coded into frontend or backend code.</p>
+  </section>
+
+  <section>
+    <h2>4. Influencer Lifecycle</h2>
+    <pre><code>REGISTERED
+  ↓
+PROFILE_PENDING
+  ↓
+KYC_PENDING
+  ↓
+KYC_VERIFIED
+  ↓
+AGREEMENT_PENDING
+  ↓
+AGREEMENT_SIGNED
+  ↓
+ACTIVE</code></pre>
+    <p>The backend should be the source of truth for status and capabilities. The frontend should render the current state rather than infer it from several fields.</p>
+  </section>
+
+  <section>
+    <h2>5. Referral Attribution</h2>
+    <pre><code>Influencer
+  ↓
+Referral URL / Campaign Code
+  ↓
+Customer Click
+  ↓
+Lead
+  ↓
+Loan Application
+  ↓
+Loan Approval
+  ↓
+Loan Disbursal
+  ↓
+Reward Event
+  ↓
+Finance Approval
+  ↓
+Payout</code></pre>
+    <blockquote>₹500 per disbursal is easy to display. Reliably proving that Influencer X caused Disbursal Y and is eligible for Reward Z is the actual platform.</blockquote>
+    <p>Attribution rules must define multiple-link clicks, duplicate customers, existing customers, attribution windows, reapplications, reversals, fraud and campaign changes.</p>
+  </section>
+
+  <section>
+    <h2>6. Campaign & Reward Rules</h2>
+    <pre><code>Campaign
+├── Product
+├── Start Date
+├── End Date
+├── Referral Reward
+├── Ad-Rights Reward
+├── Attribution Window
+├── Eligibility Rules
+└── Status</code></pre>
+    <p>A campaign/rules model avoids rewrites when payout values vary by product, influencer tier or campaign.</p>
+  </section>
+
+  <section>
+    <h2>7. Earnings Ledger</h2>
+    <p>Do not store only a mutable total earnings value. Use transaction-level records.</p>
+    <table>
+      <thead><tr><th>Event</th><th>Amount</th></tr></thead>
+      <tbody>
+        <tr><td>DISBURSAL_REWARD</td><td>+₹500</td></tr>
+        <tr><td>AD_RIGHT_REWARD</td><td>+₹5,000</td></tr>
+        <tr><td>REVERSAL</td><td>-₹500</td></tr>
+        <tr><td>PAYOUT</td><td>-₹8,500</td></tr>
+      </tbody>
+    </table>
+    <p>The ledger should support earned, pending, approved, paid and balance views and provide a clean audit trail for finance.</p>
+  </section>
+
+  <section>
+    <h2>8. Video Upload Architecture</h2>
+    <pre><code>Browser
+  ↓ request upload
+Spring Boot
+  ↓ presigned URL
+Browser ───────→ S3
+                  ↓
+            Validation / Scan
+                  ↓
+            Metadata / Thumbnail
+                  ↓
+            Ready for Review</code></pre>
+    <p>Do not proxy large video uploads through Spring Boot. Direct-to-S3 upload gives better scalability and mobile reliability.</p>
+  </section>
+
+  <section>
+    <h2>9. Ad-Rights Workflow</h2>
+    <pre><code>NOT_REQUESTED
+  ↓
+OFFERED
+  ↓
+ACCEPTED
+  ↓
+AGREEMENT_PENDING
+  ↓
+RIGHTS_GRANTED
+  ↓
+PAYMENT_ELIGIBLE
+  ↓
+PAID</code></pre>
+    <p>Store allowed platforms, usage type, territory, validity period, agreement version and payment state. A boolean adRights flag will not scale.</p>
+  </section>
+
+  <section>
+    <h2>10. Security & PII</h2>
+    <div class="checklist">
+      <ul>
+        <li>No KYC data in localStorage</li>
+        <li>No PII in URLs</li>
+        <li>No PII in query strings</li>
+        <li>No KYC information in analytics</li>
+        <li>Mask sensitive values</li>
+        <li>Short-lived signed URLs</li>
+        <li>Secure logout</li>
+        <li>Session expiry</li>
+        <li>Document authorization</li>
+        <li>Sensitive pages should not be cached</li>
+        <li>Audit sensitive actions</li>
+        <li>Review CSP / XSS / CSRF controls</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>11. Authentication & Authorization</h2>
+    <h3>Influencer</h3>
+    <pre><code>Phone Number → OTP → Authenticated Session</code></pre>
+    <h3>Internal users</h3>
+    <pre><code>Enterprise SSO → Employee Identity → Role → Permission</code></pre>
+    <p>Frontend RBAC is useful for UX, but Spring Boot must enforce authorization for every privileged operation.</p>
+  </section>
+
+  <section>
+    <h2>12. Backend Integration Boundary</h2>
+    <pre><code>Influencer / Internal UI
+          ↓
+Influencer Platform API
+          ↓
+  ┌───────┼────────┬─────────┬─────────┐
+  BOM    Loan     Finance   Marketing   KYC</code></pre>
+    <p>The frontend should not directly understand all internal Moneyview systems. Spring Boot should shield the UI from those dependencies.</p>
+  </section>
+
+  <section>
+    <h2>13. Repository & Deployment Strategy</h2>
+    <pre><code>Moneyview Website Repository
+└── Public influencer marketing page
+
+Influencer Platform Repository
+├── Influencer portal
+├── Internal portal
+└── Spring Boot backend</code></pre>
+    <blockquote>The critical requirement is not monorepo vs multi-repo. Every application must be independently buildable, testable, deployable and rollback-able.</blockquote>
+  </section>
+
+  <section>
+    <h2>14. Recommended Review Order</h2>
+    <ol>
+      <li>Application boundaries</li>
+      <li>Authentication</li>
+      <li>Authorization</li>
+      <li>API contracts</li>
+      <li>Business-state ownership</li>
+      <li>PII handling</li>
+      <li>Attribution logic</li>
+      <li>Payment / ledger model</li>
+      <li>Error handling</li>
+      <li>Deployment model</li>
+      <li>Observability</li>
+      <li>Frontend state architecture</li>
+      <li>Reusable components</li>
+      <li>Code quality</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>15. Prototype Classification</h2>
+    <p>Classify each generated module as:</p>
+    <pre><code>KEEP
+MODIFY
+REWRITE
+INTEGRATE
+REMOVE</code></pre>
+  </section>
+
+  <section>
+    <h2>16. Suggested Delivery Phases</h2>
+    <h3>Phase 0 — Prototype Assessment</h3>
+    <p>Architecture, security, API, deployment review and production backlog.</p>
+    <h3>Phase 1 — Acquisition + Onboarding</h3>
+    <p>Landing page, phone capture, authentication, profile, KYC, agreement and dashboard.</p>
+    <h3>Phase 2 — Content Workflow</h3>
+    <p>Upload, processing, marketing review, rejection/resubmission and ad rights.</p>
+    <h3>Phase 3 — Referral Attribution</h3>
+    <p>Unique links, leads, applications, disbursals and attribution rules.</p>
+    <h3>Phase 4 — Earnings + Finance</h3>
+    <p>Reward calculation, ledger, approval, payout, reconciliation and audit.</p>
+    <h3>Phase 5 — Scale</h3>
+    <p>Campaign management, tiers, scoring, fraud detection, automated payouts and analytics.</p>
+  </section>
+
+  <section>
+    <h2>17. Frontend Review Checklist</h2>
+    <div class="checklist">
+      <ul>
+        <li>Independent app builds</li>
+        <li>Typed API layer</li>
+        <li>Strict TypeScript</li>
+        <li>Role guards</li>
+        <li>Onboarding guards</li>
+        <li>Session expiry</li>
+        <li>No insecure token persistence</li>
+        <li>Central API client</li>
+        <li>Standard API errors</li>
+        <li>Schema-based forms</li>
+        <li>Draft / resume support</li>
+        <li>PII masking</li>
+        <li>Presigned video uploads</li>
+        <li>Responsive mobile UI</li>
+        <li>Accessibility checks</li>
+        <li>Lazy route loading</li>
+        <li>Bundle-size review</li>
+        <li>Critical-flow E2E tests</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>18. Immediate Next Steps</h2>
+    <ol>
+      <li>Review generated repository architecture</li>
+      <li>Identify app and deployment boundaries</li>
+      <li>Extract marketing page for Next.js integration</li>
+      <li>Review authentication and RBAC</li>
+      <li>Document API contracts</li>
+      <li>Document influencer lifecycle</li>
+      <li>Document video workflow</li>
+      <li>Document referral attribution rules</li>
+      <li>Review earnings ledger model</li>
+      <li>Review KYC / PII handling</li>
+      <li>Review CI/CD and rollback</li>
+      <li>Classify modules as KEEP / MODIFY / REWRITE / INTEGRATE / REMOVE</li>
+      <li>Create production architecture decisions</li>
+      <li>Convert approved architecture into spec-driven implementation tasks</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>19. Suggested Spec-Driven Repository Layout</h2>
+    <pre><code>/specs
+
+00-overview/
+01-landing-page/
+02-influencer-onboarding/
+03-kyc/
+04-agreements/
+05-content/
+06-ad-rights/
+07-referral-attribution/
+08-earnings/
+09-payouts/
+10-internal-portal/
+11-observability/
+12-security/
+13-deployment/</code></pre>
+    <p>Each domain should contain its own specification, state machine, API contracts and implementation tasks where applicable.</p>
+  </section>
+
+  <section>
+    <h2>20. Recommended Discussion Position</h2>
+    <blockquote>
+      The prototype already proves the end-to-end business concept, so we should use it as an accelerator rather than discard it. Before productionizing it, we should establish clean application and deployment boundaries. The public creator acquisition page should become part of the existing Moneyview Next.js platform, while the influencer and internal portals can remain independent React/TypeScript/Vite applications deployed through S3 and CloudFront. The Spring Boot backend should own business state, authorization, campaign rules, attribution, payout logic, auditability and integrations with Moneyview systems.
+    </blockquote>
+  </section>
+
+  <footer>
+    Draft Architecture Recommendation · Influencer Platform · September 2026
+  </footer>
+</div>
+</body>
+</html>
